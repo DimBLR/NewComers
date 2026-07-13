@@ -78,25 +78,38 @@
       <h1 class="section-title" style="margin-bottom:8px;">NewComers Studio</h1>
       <p class="body-text" style="margin-bottom:36px;">Озвучиваем сериалы, фильмы и анимацию для русскоязычного зрителя.</p>
 
-      <div class="news-slider">
-        <a class="slider-feature poster-hotd reveal" href="news.html">
-          <div class="slider-feature-body">
-            <span class="project-badge">Новость · 2026</span>
-            <h2>Тизеры «Фонари» и «Ходячие мертвецы: Мёртвый город»</h2>
+      <div class="news-slider reveal" id="newsSlider">
+        <div class="slider-feature-col">
+          <a class="slider-feature poster-hotd" id="sliderFeature" href="news.html">
+            <div class="slider-feature-body">
+              <span class="project-badge" id="sliderBadge">Новость · 2026</span>
+              <h2 id="sliderTitle">Тизеры «Фонари» и «Ходячие мертвецы: Мёртвый город»</h2>
+            </div>
+          </a>
+          <div class="slider-dots" id="sliderDots">
+            <button class="slider-dot active" data-index="0" aria-label="Слайд 1" type="button"></button>
+            <button class="slider-dot" data-index="1" aria-label="Слайд 2" type="button"></button>
+            <button class="slider-dot" data-index="2" aria-label="Слайд 3" type="button"></button>
           </div>
-        </a>
-        <div class="slider-list">
-          <a class="slider-item reveal" href="news.html">
+        </div>
+        <div class="slider-list" id="sliderList">
+          <a class="slider-item active" href="news.html"
+             data-poster="poster-hotd" data-badge="Новость · 2026"
+             data-title="Тизеры «Фонари» и «Ходячие мертвецы: Мёртвый город»">
+            <div class="slider-item-thumb poster-hotd"></div>
+            <div><h3>Тизеры «Фонари» и «Ходячие мертвецы»</h3></div>
+          </a>
+          <a class="slider-item" href="news.html"
+             data-poster="poster-fallout" data-badge="Новость · 2025–26"
+             data-title="Пополнение библиотеки: Fallout, The Last of Us и другие">
             <div class="slider-item-thumb poster-fallout"></div>
             <div><h3>Пополнение библиотеки: Fallout, The Last of Us и другие</h3></div>
           </a>
-          <a class="slider-item reveal" href="news.html">
+          <a class="slider-item" href="news.html"
+             data-poster="poster-1" data-badge="Скоро"
+             data-title="Готовим тизер «Тед Лассо» на русском">
             <div class="slider-item-thumb poster-1"></div>
             <div><h3>Готовим тизер «Тед Лассо» на русском</h3></div>
-          </a>
-          <a class="slider-item reveal" href="library.html">
-            <div class="slider-item-thumb poster-witcher"></div>
-            <div><h3>Библиотека работ пополнилась новыми сезонами</h3></div>
           </a>
         </div>
       </div>

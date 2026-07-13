@@ -89,3 +89,42 @@ if (librarySearch && libraryTabs && libraryResults && typeof LIBRARY !== 'undefi
 
   render();
 }
+
+// News slider (home page): auto-rotating feature panel + dots
+const sliderFeature = document.getElementById('sliderFeature');
+const sliderList = document.getElementById('sliderList');
+const sliderDots = document.getElementById('sliderDots');
+
+if (sliderFeature && sliderList && sliderDots) {
+  const items = Array.from(sliderList.querySelectorAll('.slider-item'));
+  const dots = Array.from(sliderDots.querySelectorAll('.slider-dot'));
+  const badgeEl = document.getElementById('sliderBadge');
+  const titleEl = document.getElementById('sliderTitle');
+  let current = 0;
+  let timer;
+
+  function showSlide(index) {
+    current = index;
+    const item = items[index];
+    sliderFeature.href = item.getAttribute('href');
+    sliderFeature.className = `slider-feature ${item.dataset.poster}`;
+    badgeEl.textContent = item.dataset.badge;
+    titleEl.textContent = item.dataset.title;
+    items.forEach((el, i) => el.classList.toggle('active', i === index));
+    dots.forEach((el, i) => el.classList.toggle('active', i === index));
+  }
+
+  function restartAutoplay() {
+    clearInterval(timer);
+    timer = setInterval(() => showSlide((current + 1) % items.length), 6000);
+  }
+
+  dots.forEach((dot) => {
+    dot.addEventListener('click', () => {
+      showSlide(Number(dot.dataset.index));
+      restartAutoplay();
+    });
+  });
+
+  restartAutoplay();
+}

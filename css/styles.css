@@ -822,6 +822,7 @@ a.library-row:hover {
   grid-template-columns: 1.7fr 1fr;
   gap: 20px;
 }
+.slider-feature-col { display: flex; flex-direction: column; gap: 16px; }
 .slider-feature {
   position: relative;
   min-height: 380px;
@@ -831,7 +832,21 @@ a.library-row:hover {
   display: flex;
   align-items: flex-end;
   padding: 32px;
+  transition: opacity 0.25s ease;
 }
+
+.slider-dots { display: flex; gap: 8px; justify-content: center; }
+.slider-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 4px;
+  border: none;
+  padding: 0;
+  background: var(--border);
+  cursor: pointer;
+  transition: width 0.25s ease, background 0.25s ease;
+}
+.slider-dot.active { width: 26px; background: var(--gold); }
 .slider-feature::after {
   content: '';
   position: absolute;
@@ -859,7 +874,8 @@ a.library-row:hover {
   padding: 12px;
   transition: border-color 0.2s ease, transform 0.2s ease;
 }
-.slider-item:hover { border-color: var(--gold); transform: translateY(-2px); }
+.slider-item:hover, .slider-item.active { border-color: var(--gold); }
+.slider-item:hover { transform: translateY(-2px); }
 .slider-item-thumb { height: 64px; border-radius: var(--radius-sm); }
 .slider-item h3 {
   font-family: 'Bebas Neue', sans-serif;
