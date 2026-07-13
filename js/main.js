@@ -1,28 +1,27 @@
-// Header background on scroll
-const header = document.getElementById('siteHeader');
-const onScroll = () => {
-  header.classList.toggle('scrolled', window.scrollY > 20);
-};
-document.addEventListener('scroll', onScroll, { passive: true });
-onScroll();
-
-// Mobile nav toggle
+// Mobile sidebar toggle
 const burger = document.getElementById('burgerBtn');
-const nav = document.getElementById('mainNav');
+const sidebar = document.getElementById('siteSidebar');
+const backdrop = document.getElementById('sidebarBackdrop');
 
-burger.addEventListener('click', () => {
-  const isOpen = nav.classList.toggle('open');
-  burger.classList.toggle('open', isOpen);
-  burger.setAttribute('aria-expanded', String(isOpen));
-});
+function closeSidebar() {
+  sidebar.classList.remove('open');
+  burger.classList.remove('open');
+  burger.setAttribute('aria-expanded', 'false');
+  backdrop.classList.remove('show');
+}
 
-nav.querySelectorAll('a').forEach((link) => {
-  link.addEventListener('click', () => {
-    nav.classList.remove('open');
-    burger.classList.remove('open');
-    burger.setAttribute('aria-expanded', 'false');
+if (burger && sidebar && backdrop) {
+  burger.addEventListener('click', () => {
+    const isOpen = sidebar.classList.toggle('open');
+    burger.classList.toggle('open', isOpen);
+    burger.setAttribute('aria-expanded', String(isOpen));
+    backdrop.classList.toggle('show', isOpen);
   });
-});
+  backdrop.addEventListener('click', closeSidebar);
+  sidebar.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', closeSidebar);
+  });
+}
 
 // Reveal on scroll
 const revealEls = document.querySelectorAll('.reveal');
@@ -39,50 +38,54 @@ const io = new IntersectionObserver(
 );
 revealEls.forEach((el) => io.observe(el));
 
-// Library search + category filter
+// Library search + category filter (data-driven, see js/library-data.js)
 const librarySearch = document.getElementById('librarySearch');
 const libraryTabs = document.getElementById('libraryTabs');
+const libraryResults = document.getElementById('libraryResults');
 
-if (librarySearch && libraryTabs) {
-  const rows = Array.from(document.querySelectorAll('.library-row'));
-  const groups = Array.from(document.querySelectorAll('.library-group'));
+if (librarySearch && libraryTabs && libraryResults && typeof LIBRARY !== 'undefined') {
   const countEl = document.getElementById('libraryCount');
   const emptyEl = document.getElementById('libraryEmpty');
-  const totalCount = rows.length;
+  const totalCount = LIBRARY.length;
+  const CATEGORY_LABEL = { series: 'Сериалы', movies: 'Фильмы', anime: 'Аниме' };
+  const CATEGORY_ORDER = ['series', 'movies', 'anime'];
   let activeFilter = 'all';
 
-  const applyFilters = () => {
+  function rowHTML(item) {
+    return `<a class="library-row" data-cat="${item.category}" href="project.html?slug=${item.slug}">` +
+      `<span class="library-row-title">${item.title}</span>` +
+      `<span class="library-row-meta">${item.meta}</span></a>`;
+  }
+
+  function render() {
     const query = librarySearch.value.trim().toLowerCase();
-    let visibleCount = 0;
-
-    groups.forEach((group) => {
-      const matchesTab = activeFilter === 'all' || group.dataset.category === activeFilter;
-      let groupVisible = 0;
-
-      group.querySelectorAll('.library-row').forEach((row) => {
-        const title = row.querySelector('.library-row-title').textContent.toLowerCase();
-        const show = matchesTab && (query === '' || title.includes(query));
-        row.classList.toggle('is-hidden', !show);
-        if (show) { groupVisible += 1; visibleCount += 1; }
-      });
-
-      group.style.display = groupVisible > 0 ? '' : 'none';
+    const filtered = LIBRARY.filter((item) => {
+      const matchesTab = activeFilter === 'all' || item.category === activeFilter;
+      const matchesQuery = query === '' || item.title.toLowerCase().includes(query);
+      return matchesTab && matchesQuery;
     });
 
-    countEl.textContent = `Показано ${visibleCount} из ${totalCount}`;
-    emptyEl.classList.toggle('show', visibleCount === 0);
-  };
+    libraryResults.innerHTML = CATEGORY_ORDER.map((cat) => {
+      const items = filtered.filter((i) => i.category === cat);
+      if (items.length === 0) return '';
+      return `<div class="library-group" data-category="${cat}">` +
+        `<h3 class="library-group-title">${CATEGORY_LABEL[cat]}</h3>` +
+        `<div class="library-grid">${items.map(rowHTML).join('')}</div></div>`;
+    }).join('');
 
-  librarySearch.addEventListener('input', applyFilters);
+    countEl.textContent = `Показано ${filtered.length} из ${totalCount}`;
+    emptyEl.classList.toggle('show', filtered.length === 0);
+  }
 
+  librarySearch.addEventListener('input', render);
   libraryTabs.querySelectorAll('.library-tab').forEach((tab) => {
     tab.addEventListener('click', () => {
       libraryTabs.querySelectorAll('.library-tab').forEach((t) => t.classList.remove('active'));
       tab.classList.add('active');
       activeFilter = tab.dataset.filter;
-      applyFilters();
+      render();
     });
   });
 
-  applyFilters();
+  render();
 }
