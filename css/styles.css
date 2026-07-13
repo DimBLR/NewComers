@@ -672,31 +672,7 @@ img, svg { display: block; max-width: 100%; }
   margin: 40px 0 20px;
 }
 
-.library-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 10px;
-}
-.library-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 12px;
-  padding: 14px 18px;
-  background: var(--card-bg);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
-  font-size: 0.9rem;
-  transition: border-color 0.2s ease, transform 0.2s ease, background 0.2s ease;
-}
-a.library-row:hover {
-  border-color: var(--gold);
-  background: rgba(217,178,76,0.06);
-  transform: translateY(-2px);
-}
-.library-row-title { color: var(--text); }
-.library-row-meta { color: var(--text-muted); font-size: 0.78rem; white-space: nowrap; }
-.library-row.is-hidden { display: none; }
+.library-grid { margin-top: 24px; }
 
 .library-empty {
   display: none;

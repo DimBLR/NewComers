@@ -49,12 +49,15 @@ if (librarySearch && libraryTabs && libraryResults && typeof LIBRARY !== 'undefi
   const totalCount = LIBRARY.length;
   const CATEGORY_LABEL = { series: 'Сериалы', movies: 'Фильмы', anime: 'Аниме' };
   const CATEGORY_ORDER = ['series', 'movies', 'anime'];
+  const GENERIC_POSTERS = ['poster-1', 'poster-2', 'poster-3'];
   let activeFilter = 'all';
 
-  function rowHTML(item) {
-    return `<a class="library-row" data-cat="${item.category}" href="project.html?slug=${item.slug}">` +
-      `<span class="library-row-title">${item.title}</span>` +
-      `<span class="library-row-meta">${item.meta}</span></a>`;
+  function cardHTML(item) {
+    const poster = item.posterClass || GENERIC_POSTERS[LIBRARY.indexOf(item) % GENERIC_POSTERS.length];
+    const badge = item.badge ? `<span class="project-badge">${item.badge}</span>` : '';
+    return `<a class="project-card library-card" href="project.html?slug=${item.slug}">` +
+      `<div class="project-poster ${poster}">${badge}</div>` +
+      `<div class="project-body"><h3>${item.title}</h3><p>${item.meta}</p></div></a>`;
   }
 
   function render() {
@@ -70,7 +73,7 @@ if (librarySearch && libraryTabs && libraryResults && typeof LIBRARY !== 'undefi
       if (items.length === 0) return '';
       return `<div class="library-group" data-category="${cat}">` +
         `<h3 class="library-group-title">${CATEGORY_LABEL[cat]}</h3>` +
-        `<div class="library-grid">${items.map(rowHTML).join('')}</div></div>`;
+        `<div class="projects-grid library-grid">${items.map(cardHTML).join('')}</div></div>`;
     }).join('');
 
     countEl.textContent = `Показано ${filtered.length} из ${totalCount}`;
