@@ -264,6 +264,115 @@ img, svg { display: block; max-width: 100%; }
   gap: 16px;
 }
 
+/* ---------- Hero v2 (homepage) ---------- */
+.hero-v2 {
+  position: relative;
+  padding: 96px 0 24px;
+  overflow: hidden;
+}
+.hero-v2-glow {
+  position: absolute;
+  top: -220px; right: -180px;
+  width: 680px; height: 680px;
+  background: radial-gradient(circle, rgba(217,178,76,0.35), rgba(217,178,76,0.08) 45%, transparent 70%);
+  pointer-events: none;
+}
+.hero-v2-inner {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 48px;
+  align-items: center;
+}
+.hero-v2-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.6rem, 6vw, 4.4rem);
+  line-height: 1.02;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  margin: 4px 0 20px;
+}
+.hero-v2-lede { margin-bottom: 28px; }
+.hero-v2-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+.tag-pill {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 7px 16px;
+}
+.hero-v2 .hero-cta { justify-content: flex-start; }
+
+.hero-v2-visual {
+  position: relative;
+  height: 360px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hero-v2-ring {
+  position: absolute;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+}
+.hero-v2-ring-1 { width: 250px; height: 250px; animation: heroRingPulse 6s ease-in-out infinite; }
+.hero-v2-ring-2 { width: 330px; height: 330px; animation: heroRingPulse 6s ease-in-out infinite 0.6s; }
+@keyframes heroRingPulse {
+  0%, 100% { opacity: 0.35; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(1.04); }
+}
+.hero-v2-mark {
+  width: 140px; height: 140px;
+  filter: drop-shadow(0 0 30px rgba(217,178,76,0.35));
+  animation: heroFloat 5s ease-in-out infinite;
+}
+@keyframes heroFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+.hero-v2-bars {
+  position: absolute;
+  bottom: 30px;
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+  height: 40px;
+}
+.hero-v2-bars span {
+  width: 5px;
+  border-radius: 3px;
+  background: var(--gold);
+  opacity: 0.65;
+  transform-origin: bottom;
+  animation: heroBar 1.2s ease-in-out infinite;
+}
+.hero-v2-bars span:nth-child(1) { height: 30%; animation-delay: 0s; }
+.hero-v2-bars span:nth-child(2) { height: 60%; animation-delay: 0.1s; }
+.hero-v2-bars span:nth-child(3) { height: 90%; animation-delay: 0.2s; }
+.hero-v2-bars span:nth-child(4) { height: 50%; animation-delay: 0.3s; }
+.hero-v2-bars span:nth-child(5) { height: 100%; animation-delay: 0.4s; }
+.hero-v2-bars span:nth-child(6) { height: 65%; animation-delay: 0.5s; }
+.hero-v2-bars span:nth-child(7) { height: 40%; animation-delay: 0.6s; }
+@keyframes heroBar {
+  0%, 100% { transform: scaleY(0.6); }
+  50% { transform: scaleY(1); }
+}
+
+@media (max-width: 900px) {
+  .hero-v2-inner { grid-template-columns: 1fr; }
+  .hero-v2-visual { height: 220px; order: -1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-v2-ring, .hero-v2-mark, .hero-v2-bars span { animation: none; }
+}
+
 /* ---------- Sections generic ---------- */
 .section {
   position: relative;
@@ -366,9 +475,50 @@ img, svg { display: block; max-width: 100%; }
   z-index: 0;
 }
 .project-poster .project-badge { position: relative; z-index: 1; }
-.poster-1 { background: repeating-linear-gradient(135deg, #2a1810, #2a1810 10px, #1b0f0a 10px, #1b0f0a 20px); }
-.poster-2 { background: repeating-linear-gradient(135deg, #16201a, #16201a 10px, #0e1512 10px, #0e1512 20px); }
-.poster-3 { background: repeating-linear-gradient(135deg, #1a1c28, #1a1c28 10px, #10111a 10px, #10111a 20px); }
+
+/* Placeholder "poster" for titles without real artwork: moody duotone
+   gradient + soft vignette + giant faint initial + title baked into the art,
+   so the grid reads as designed instead of a wall of missing images. */
+.project-poster:not(:has(img)),
+.project-banner:not(:has(img)),
+.slider-feature,
+.slider-item-thumb {
+  background:
+    radial-gradient(circle at 25% 15%, rgba(255,255,255,0.10), transparent 55%),
+    linear-gradient(to top, rgba(0,0,0,0.6), transparent 50%),
+    linear-gradient(160deg, var(--p1, #1c1a38), var(--p2, #131228) 60%, var(--p3, #0b0a18));
+}
+.project-poster:not(:has(img))::before {
+  content: attr(data-initial);
+  position: absolute;
+  right: -10px; top: -26px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 8.5rem;
+  line-height: 1;
+  color: rgba(255,255,255,0.08);
+  z-index: 0;
+  pointer-events: none;
+}
+.project-poster:not(:has(img))::after {
+  content: attr(data-title);
+  position: absolute;
+  left: 16px; right: 16px; bottom: 16px;
+  z-index: 1;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(1.1rem, 2.2vw, 1.55rem);
+  line-height: 1.05;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: rgba(243,241,234,0.95);
+  text-shadow: 0 2px 14px rgba(0,0,0,0.6);
+}
+
+.poster-g1 { --p1: #123832; --p2: #0d2622; --p3: #081716; }
+.poster-g2 { --p1: #3a1420; --p2: #280d16; --p3: #180810; }
+.poster-g3 { --p1: #1c1a38; --p2: #131228; --p3: #0b0a18; }
+.poster-g4 { --p1: #1a3018; --p2: #122010; --p3: #0a140a; }
+.poster-g5 { --p1: #3a2410; --p2: #28180a; --p3: #180e06; }
+.poster-g6 { --p1: #2c1638; --p2: #1d0f26; --p3: #120918; }
 
 .project-badge {
   font-size: 0.7rem;
@@ -693,18 +843,18 @@ img, svg { display: block; max-width: 100%; }
 .library-empty.show { display: block; }
 
 /* Featured spotlight grid reuses .projects-grid; franchise accent posters */
-.poster-hotd { background: repeating-linear-gradient(135deg, #2a1210, #2a1210 10px, #180a09 10px, #180a09 20px); }
-.poster-tlou { background: repeating-linear-gradient(135deg, #1c2418, #1c2418 10px, #10150d 10px, #10150d 20px); }
-.poster-witcher { background: repeating-linear-gradient(135deg, #241418, #241418 10px, #150c0e 10px, #150c0e 20px); }
-.poster-andor { background: repeating-linear-gradient(135deg, #1a1c28, #1a1c28 10px, #10111a 10px, #10111a 20px); }
-.poster-loki { background: repeating-linear-gradient(135deg, #241a2c, #241a2c 10px, #150f19 10px, #150f19 20px); }
-.poster-fallout { background: repeating-linear-gradient(135deg, #2a2210, #2a2210 10px, #181209 10px, #181209 20px); }
-.poster-wednesday { background: repeating-linear-gradient(135deg, #181a24, #181a24 10px, #0d0e14 10px, #0d0e14 20px); }
-.poster-twd { background: repeating-linear-gradient(135deg, #16201a, #16201a 10px, #0e1512 10px, #0e1512 20px); }
-.poster-xmen { background: repeating-linear-gradient(135deg, #241c10, #241c10 10px, #150f09 10px, #150f09 20px); }
-.poster-daredevil { background: repeating-linear-gradient(135deg, #2a1010, #2a1010 10px, #180909 10px, #180909 20px); }
-.poster-shogun { background: repeating-linear-gradient(135deg, #201a10, #201a10 10px, #120f09 10px, #120f09 20px); }
-.poster-skeleton { background: repeating-linear-gradient(135deg, #10181c, #10181c 10px, #090f12 10px, #090f12 20px); }
+.poster-hotd { --p1: #3a1414; --p2: #280d0d; --p3: #180909; }
+.poster-tlou { --p1: #22301c; --p2: #182012; --p3: #0e140a; }
+.poster-witcher { --p1: #38141c; --p2: #260d13; --p3: #160810; }
+.poster-andor { --p1: #182238; --p2: #111a28; --p3: #0a1018; }
+.poster-loki { --p1: #2c1838; --p2: #1c1028; --p3: #110a1a; }
+.poster-fallout { --p1: #3a2c10; --p2: #281e0a; --p3: #181206; }
+.poster-wednesday { --p1: #241a38; --p2: #181026; --p3: #0e0918; }
+.poster-twd { --p1: #1e3018; --p2: #142010; --p3: #0c140a; }
+.poster-xmen { --p1: #382c10; --p2: #241c0a; --p3: #151006; }
+.poster-daredevil { --p1: #3a1010; --p2: #280a0a; --p3: #180606; }
+.poster-shogun { --p1: #382010; --p2: #26160a; --p3: #160d06; }
+.poster-skeleton { --p1: #0f2e38; --p2: #0a1f28; --p3: #061318; }
 
 /* ---------- Project detail page ---------- */
 .project-back {

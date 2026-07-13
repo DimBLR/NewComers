@@ -162,7 +162,7 @@
     }
 
     const CATEGORY_LABEL = { series: 'Сериалы', movies: 'Фильмы', anime: 'Аниме' };
-    const GENERIC_POSTERS = ['poster-1', 'poster-2', 'poster-3'];
+    const GENERIC_POSTERS = ['poster-g1', 'poster-g2', 'poster-g3', 'poster-g4', 'poster-g5', 'poster-g6'];
     const posterClass = item.posterClass || GENERIC_POSTERS[LIBRARY.indexOf(item) % GENERIC_POSTERS.length];
     const description = item.description ||
       `Один из проектов библиотеки NewComers Studio. Перевод и озвучивание на русском языке — ${CATEGORY_LABEL[item.category].toLowerCase()}.`;

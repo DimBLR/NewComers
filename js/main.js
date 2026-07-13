@@ -49,15 +49,16 @@ if (librarySearch && libraryTabs && libraryResults && typeof LIBRARY !== 'undefi
   const totalCount = LIBRARY.length;
   const CATEGORY_LABEL = { series: 'Сериалы', movies: 'Фильмы', anime: 'Аниме' };
   const CATEGORY_ORDER = ['series', 'movies', 'anime'];
-  const GENERIC_POSTERS = ['poster-1', 'poster-2', 'poster-3'];
+  const GENERIC_POSTERS = ['poster-g1', 'poster-g2', 'poster-g3', 'poster-g4', 'poster-g5', 'poster-g6'];
   let activeFilter = 'all';
 
   function cardHTML(item) {
     const badge = item.badge ? `<span class="project-badge">${item.badge}</span>` : '';
     const posterClass = item.poster ? '' : (item.posterClass || GENERIC_POSTERS[LIBRARY.indexOf(item) % GENERIC_POSTERS.length]);
     const img = item.poster ? `<img src="${item.poster}" alt="${item.title}" loading="lazy">` : '';
+    const posterAttrs = item.poster ? '' : ` data-title="${item.title}" data-initial="${item.title.trim().charAt(0).toUpperCase()}"`;
     return `<a class="project-card library-card" href="project.html?slug=${item.slug}">` +
-      `<div class="project-poster ${posterClass}">${img}${badge}</div>` +
+      `<div class="project-poster ${posterClass}"${posterAttrs}>${img}${badge}</div>` +
       `<div class="project-body"><h3>${item.title}</h3><p>${item.meta}</p></div></a>`;
   }
 

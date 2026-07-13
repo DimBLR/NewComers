@@ -73,11 +73,41 @@
   <main class="site-main">
     <div class="site-header-spacer"></div>
 
-    <section class="wrap" style="padding-top:56px;">
-      <p class="kicker">Перевод и озвучивание · с 2014 года</p>
-      <h1 class="section-title" style="margin-bottom:8px;">NewComers Studio</h1>
-      <p class="body-text" style="margin-bottom:36px;">Озвучиваем сериалы, фильмы и анимацию для русскоязычного зрителя.</p>
+    <section class="hero-v2 reveal">
+      <div class="hero-v2-glow" aria-hidden="true"></div>
+      <div class="wrap hero-v2-inner">
+        <div class="hero-v2-copy">
+          <p class="kicker">Перевод и озвучивание · с 2014 года</p>
+          <h1 class="hero-v2-title">Голоса,<br>которые оживляют экран</h1>
+          <p class="body-text hero-v2-lede">Озвучиваем сериалы, фильмы и анимацию для русскоязычного зрителя — от разбора оригинала до финального сведения звука.</p>
+          <div class="hero-v2-tags">
+            <span class="tag-pill">#Перевод</span>
+            <span class="tag-pill">#Озвучивание</span>
+            <span class="tag-pill">#Сериалы</span>
+            <span class="tag-pill">#Фильмы</span>
+            <span class="tag-pill">#Аниме</span>
+          </div>
+          <div class="hero-cta">
+            <a href="library.html" class="btn btn-primary">Библиотека работ</a>
+            <a href="contacts.html" class="btn btn-outline">Заказать проект</a>
+          </div>
+        </div>
+        <div class="hero-v2-visual" aria-hidden="true">
+          <div class="hero-v2-ring hero-v2-ring-1"></div>
+          <div class="hero-v2-ring hero-v2-ring-2"></div>
+          <svg class="hero-v2-mark" viewBox="0 0 100 100">
+            <polygon points="50,4 91,26 91,70 50,96 9,70 9,26" class="mark-shield"/>
+            <path d="M32,66 L32,34 L54,66 L54,34" class="mark-letter"/>
+            <path d="M62,40 A14,14 0 1 0 62,60" class="mark-letter"/>
+          </svg>
+          <div class="hero-v2-bars">
+            <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+          </div>
+        </div>
+      </div>
+    </section>
 
+    <section class="wrap" style="padding-top:8px;">
       <div class="news-slider reveal" id="newsSlider">
         <div class="slider-feature-col">
           <a class="slider-feature poster-hotd" id="sliderFeature" href="news.html">
@@ -106,9 +136,9 @@
             <div><h3>Пополнение библиотеки: Fallout, The Last of Us и другие</h3></div>
           </a>
           <a class="slider-item" href="news.html"
-             data-poster="poster-1" data-badge="Скоро"
+             data-poster="poster-g4" data-badge="Скоро"
              data-title="Готовим тизер «Тед Лассо» на русском">
-            <div class="slider-item-thumb poster-1"></div>
+            <div class="slider-item-thumb poster-g4"></div>
             <div><h3>Готовим тизер «Тед Лассо» на русском</h3></div>
           </a>
         </div>
@@ -141,32 +171,32 @@
           </a>
 
           <a class="project-card reveal" href="project.html?slug=the-last-of-us">
-            <div class="project-poster poster-tlou"><span class="project-badge">HBO · Max</span></div>
+            <div class="project-poster poster-tlou" data-title="The Last of Us" data-initial="T"><span class="project-badge">HBO · Max</span></div>
             <div class="project-body"><h3>The Last of Us</h3><p>Сезоны 1–2</p></div>
           </a>
 
           <a class="project-card reveal" href="project.html?slug=the-witcher">
-            <div class="project-poster poster-witcher"><span class="project-badge">Netflix</span></div>
+            <div class="project-poster poster-witcher" data-title="The Witcher" data-initial="T"><span class="project-badge">Netflix</span></div>
             <div class="project-body"><h3>The Witcher</h3><p>Сезон 3</p></div>
           </a>
 
           <a class="project-card reveal" href="project.html?slug=andor">
-            <div class="project-poster poster-andor"><span class="project-badge">Disney+</span></div>
+            <div class="project-poster poster-andor" data-title="Andor" data-initial="A"><span class="project-badge">Disney+</span></div>
             <div class="project-body"><h3>Andor</h3><p>Сезоны 1–2</p></div>
           </a>
 
           <a class="project-card reveal" href="project.html?slug=fallout">
-            <div class="project-poster poster-fallout"><span class="project-badge">Prime Video</span></div>
+            <div class="project-poster poster-fallout" data-title="Fallout" data-initial="F"><span class="project-badge">Prime Video</span></div>
             <div class="project-body"><h3>Fallout</h3><p>Сезоны 1–2</p></div>
           </a>
 
           <a class="project-card reveal" href="project.html?slug=wednesday">
-            <div class="project-poster poster-wednesday"><span class="project-badge">Netflix</span></div>
+            <div class="project-poster poster-wednesday" data-title="Wednesday" data-initial="W"><span class="project-badge">Netflix</span></div>
             <div class="project-body"><h3>Wednesday</h3><p>Сезон 1</p></div>
           </a>
 
           <a class="project-card reveal" href="project.html?slug=the-walking-dead-dead-city">
-            <div class="project-poster poster-twd"><span class="project-badge">AMC+</span></div>
+            <div class="project-poster poster-twd" data-title="The Walking Dead: Dead City" data-initial="T"><span class="project-badge">AMC+</span></div>
             <div class="project-body"><h3>The Walking Dead: Dead City</h3><p>Сезоны 1–2</p></div>
           </a>
 
@@ -209,7 +239,7 @@
           </a>
 
           <a class="project-card reveal" href="news.html">
-            <div class="project-poster poster-1"><span class="project-badge">Скоро</span></div>
+            <div class="project-poster poster-g4"><span class="project-badge">Скоро</span></div>
             <div class="project-body">
               <h3>Тизер «Тед Лассо»</h3>
               <p>Готовим озвучку официального тизера сериала на русском.</p>
