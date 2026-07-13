@@ -179,10 +179,12 @@
     }
 
     const CATEGORY_LABEL = { series: 'Сериалы', movies: 'Фильмы', anime: 'Аниме' };
+    const CATEGORY_LABEL_SINGULAR = { series: 'сериал', movies: 'фильм', anime: 'аниме' };
     const GENERIC_POSTERS = ['poster-g1', 'poster-g2', 'poster-g3', 'poster-g4', 'poster-g5', 'poster-g6'];
     const posterClass = item.posterClass || GENERIC_POSTERS[LIBRARY.indexOf(item) % GENERIC_POSTERS.length];
-    const description = item.description ||
-      `Один из проектов библиотеки NewComers Studio. Перевод и озвучивание на русском языке — ${CATEGORY_LABEL[item.category].toLowerCase()}.`;
+    const premise = item.description ||
+      `Один из проектов библиотеки NewComers Studio — ${CATEGORY_LABEL_SINGULAR[item.category]} «${item.title}».`;
+    const description = `${premise} Команда переводит текст с учётом контекста и характеров, подбирает голоса под роли и сводит звук в готовую дорожку. Уточнить состав команды и статус работы можно в группе VK или на странице «Новости».`;
 
     document.title = `${item.title} — NewComers Studio`;
     document.getElementById('titleEl').textContent = item.title;
