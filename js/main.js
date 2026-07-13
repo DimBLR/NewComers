@@ -53,10 +53,11 @@ if (librarySearch && libraryTabs && libraryResults && typeof LIBRARY !== 'undefi
   let activeFilter = 'all';
 
   function cardHTML(item) {
-    const poster = item.posterClass || GENERIC_POSTERS[LIBRARY.indexOf(item) % GENERIC_POSTERS.length];
     const badge = item.badge ? `<span class="project-badge">${item.badge}</span>` : '';
+    const posterClass = item.poster ? '' : (item.posterClass || GENERIC_POSTERS[LIBRARY.indexOf(item) % GENERIC_POSTERS.length]);
+    const img = item.poster ? `<img src="${item.poster}" alt="${item.title}" loading="lazy">` : '';
     return `<a class="project-card library-card" href="project.html?slug=${item.slug}">` +
-      `<div class="project-poster ${poster}">${badge}</div>` +
+      `<div class="project-poster ${posterClass}">${img}${badge}</div>` +
       `<div class="project-body"><h3>${item.title}</h3><p>${item.meta}</p></div></a>`;
   }
 

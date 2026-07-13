@@ -46,7 +46,7 @@ const LIBRARY = [
   { slug: 'hotel-cocaine', title: 'Hotel Cocaine', category: 'series', meta: 'Сезон 1' },
   {
     slug: 'house-of-the-dragon', title: 'House of the Dragon', category: 'series', meta: 'Сезоны 1–2', featured: true,
-    badge: 'HBO · Max', posterClass: 'poster-hotd',
+    badge: 'HBO · Max', posterClass: 'poster-hotd', poster: 'assets/house-of-the-dragon.jpg',
     description: 'Приквел «Игры престолов» о войне за Железный трон между потомками рода Таргариенов — «Танце драконов».',
   },
   { slug: 'invincible', title: 'Invincible', category: 'series', meta: 'Сезоны 1–3' },
@@ -80,11 +80,12 @@ const LIBRARY = [
     badge: 'FX', posterClass: 'poster-shogun',
     description: 'Экранизация романа Джеймса Клавелла о европейце, оказавшемся при дворе средневековой Японии.',
   },
-  { slug: 'silo', title: 'Silo', category: 'series', meta: 'Сезоны 2–3' },
+  { slug: 'silo', title: 'Silo', category: 'series', meta: 'Сезоны 2–3', poster: 'assets/silo.jpg' },
   { slug: 'snowpiercer', title: 'Snowpiercer', category: 'series', meta: 'Сезон 4' },
   { slug: 'spartacus-house-of-ashur', title: 'Spartacus: House of Ashur', category: 'series', meta: 'Сезон 1' },
   { slug: 'star-trek-discovery', title: 'Star Trek: Discovery', category: 'series', meta: 'Сезон 5' },
   { slug: 'star-trek-starfleet-academy', title: 'Star Trek: Starfleet Academy', category: 'series', meta: 'Сезон 1' },
+  { slug: 'star-trek-strange-new-worlds', title: 'Star Trek: Strange New Worlds', category: 'series', meta: 'Сезон 4', badge: 'Paramount+', poster: 'assets/star-trek-strange-new-worlds.jpg' },
   { slug: 'star-wars-maul-shadow-lord', title: 'Star Wars: Maul – Shadow Lord', category: 'series', meta: 'Сезон 1' },
   {
     slug: 'star-wars-skeleton-crew', title: 'Star Wars: Skeleton Crew', category: 'series', meta: 'Сезон 1', featured: true,
@@ -202,7 +203,7 @@ const LIBRARY = [
   { slug: 'werewolf-by-night', title: 'Werewolf by Night', category: 'movies', meta: '2022' },
 
   // ---- Аниме ----
-  { slug: 'bleach-thousand-year-blood-war', title: 'Bleach: Thousand-Year Blood War', category: 'anime', meta: 'Аниме-сериал' },
+  { slug: 'bleach-thousand-year-blood-war', title: 'Bleach: Thousand-Year Blood War', category: 'anime', meta: 'Аниме-сериал', poster: 'assets/bleach-thousand-year-blood-war.jpg' },
   { slug: 'made-in-abyss', title: 'Made in Abyss', category: 'anime', meta: 'Сезоны 1–2' },
   { slug: 'shingeki-no-kyojin', title: 'Shingeki no Kyojin (Атака титанов)', category: 'anime', meta: 'Сезоны 2–4' },
 ];
