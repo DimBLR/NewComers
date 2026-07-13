@@ -75,32 +75,54 @@
 
     <section class="section" id="projectContent" style="padding-top: 72px; display:none;">
       <div class="wrap">
-        <p class="breadcrumb"><a href="library.html">Библиотека работ</a> → <span id="crumbCategory"></span> → <span id="crumbTitle"></span></p>
+        <a href="library.html" class="project-back">← Вернуться в библиотеку</a>
 
-        <div class="project-hero">
-          <div class="project-hero-poster" id="posterEl"></div>
+        <div class="project-banner" id="posterEl"></div>
+
+        <div class="project-hero-badges">
+          <span class="project-badge" id="badgeEl"></span>
+          <span class="project-badge" id="categoryBadgeEl"></span>
+        </div>
+
+        <div class="project-title-row">
+          <h1 id="titleEl"></h1>
+          <a href="https://www.youtube.com/@NewComers_Studio" target="_blank" rel="noopener" class="btn btn-primary">Трейлер на YouTube</a>
+        </div>
+        <p class="project-hero-meta" id="metaEl"></p>
+
+        <div class="project-about">
           <div>
-            <div class="project-hero-badges">
-              <span class="project-badge" id="badgeEl"></span>
-              <span class="project-badge" id="categoryBadgeEl"></span>
-            </div>
-            <h1 id="titleEl"></h1>
-            <p class="project-hero-meta" id="metaEl"></p>
-            <p class="body-text" id="descEl"></p>
-            <div class="hero-cta" style="justify-content:flex-start; margin-top:28px;">
-              <a href="https://www.youtube.com/@NewComers_Studio" target="_blank" rel="noopener" class="btn btn-primary">Трейлер на YouTube</a>
-              <a href="library.html" class="btn btn-outline">← Вся библиотека</a>
-            </div>
+            <p class="kicker">Об этой работе</p>
+            <p class="body-text" id="descEl" style="max-width: none;"></p>
+          </div>
+          <div class="project-meta-list">
+            <div><b>Тип:</b> <span id="metaTypeEl"></span></div>
+            <div id="metaPlatformRow"><b>Платформа:</b> <span id="metaPlatformEl"></span></div>
+            <div><b>Хронометраж:</b> <span id="metaMetaEl"></span></div>
+            <div><b>Язык:</b> перевод и озвучивание на русском</div>
           </div>
         </div>
 
-        <div class="project-team">
-          <p class="kicker">Над проектом работали</p>
-          <div class="project-team-note">
-            Перевод и озвучивание — команда NewComers Studio: переводчики, режиссёр озвучивания, актёры и звукорежиссёр.
-            Точный состав голосов для конкретной работы можно уточнить в
-            <a href="https://vk.com/newcomers_studio" target="_blank" rel="noopener" style="color: var(--gold); font-weight: 700;">группе VK</a>
-            или <a href="contacts.html" style="color: var(--gold); font-weight: 700;">напрямую</a>.
+        <div class="project-tabs">
+          <div class="project-tab-buttons">
+            <button class="project-tab-btn active" data-tab="authors">Авторы</button>
+            <button class="project-tab-btn" data-tab="updates">Обновления</button>
+          </div>
+
+          <div class="project-tab-panel active" data-panel="authors">
+            <div class="project-team-note">
+              Перевод и озвучивание — команда NewComers Studio: переводчики, режиссёр озвучивания, актёры и звукорежиссёр.
+              Точный состав голосов для конкретной работы можно уточнить в
+              <a href="https://vk.com/newcomers_studio" target="_blank" rel="noopener" style="color: var(--gold); font-weight: 700;">группе VK</a>
+              или <a href="contacts.html" style="color: var(--gold); font-weight: 700;">напрямую</a>.
+            </div>
+          </div>
+
+          <div class="project-tab-panel" data-panel="updates">
+            <div class="project-team-note">
+              Отдельных обновлений по этой работе пока нет — все анонсы студии смотрите на
+              <a href="news.html" style="color: var(--gold); font-weight: 700;">странице новостей</a>.
+            </div>
           </div>
         </div>
       </div>
@@ -146,22 +168,34 @@
       `Один из проектов библиотеки NewComers Studio. Перевод и озвучивание на русском языке — ${CATEGORY_LABEL[item.category].toLowerCase()}.`;
 
     document.title = `${item.title} — NewComers Studio`;
-    document.getElementById('crumbCategory').textContent = CATEGORY_LABEL[item.category];
-    document.getElementById('crumbTitle').textContent = item.title;
     document.getElementById('titleEl').textContent = item.title;
     document.getElementById('metaEl').textContent = item.meta;
     document.getElementById('descEl').textContent = description;
     document.getElementById('categoryBadgeEl').textContent = CATEGORY_LABEL[item.category];
-    document.getElementById('posterEl').className = `project-hero-poster ${posterClass}`;
+    document.getElementById('posterEl').className = `project-banner ${posterClass}`;
+    document.getElementById('metaTypeEl').textContent = CATEGORY_LABEL[item.category];
+    document.getElementById('metaMetaEl').textContent = item.meta;
 
     const badgeEl = document.getElementById('badgeEl');
+    const platformRow = document.getElementById('metaPlatformRow');
     if (item.badge) {
       badgeEl.textContent = item.badge;
+      document.getElementById('metaPlatformEl').textContent = item.badge;
     } else {
       badgeEl.remove();
+      platformRow.remove();
     }
 
     document.getElementById('projectContent').style.display = 'block';
+
+    document.querySelectorAll('.project-tab-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.project-tab-btn').forEach((b) => b.classList.remove('active'));
+        document.querySelectorAll('.project-tab-panel').forEach((p) => p.classList.remove('active'));
+        btn.classList.add('active');
+        document.querySelector(`.project-tab-panel[data-panel="${btn.dataset.tab}"]`).classList.add('active');
+      });
+    });
   })();
 </script>
 </body>
