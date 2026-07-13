@@ -1,25 +1,21 @@
-// Mobile sidebar toggle
+// Mobile nav drawer toggle
 const burger = document.getElementById('burgerBtn');
-const sidebar = document.getElementById('siteSidebar');
-const backdrop = document.getElementById('sidebarBackdrop');
+const drawer = document.getElementById('navbarDrawer');
 
-function closeSidebar() {
-  sidebar.classList.remove('open');
+function closeDrawer() {
+  drawer.classList.remove('open');
   burger.classList.remove('open');
   burger.setAttribute('aria-expanded', 'false');
-  backdrop.classList.remove('show');
 }
 
-if (burger && sidebar && backdrop) {
+if (burger && drawer) {
   burger.addEventListener('click', () => {
-    const isOpen = sidebar.classList.toggle('open');
+    const isOpen = drawer.classList.toggle('open');
     burger.classList.toggle('open', isOpen);
     burger.setAttribute('aria-expanded', String(isOpen));
-    backdrop.classList.toggle('show', isOpen);
   });
-  backdrop.addEventListener('click', closeSidebar);
-  sidebar.querySelectorAll('a').forEach((link) => {
-    link.addEventListener('click', closeSidebar);
+  drawer.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', closeDrawer);
   });
 }
 
