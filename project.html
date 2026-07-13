@@ -99,26 +99,24 @@
         <p class="project-hero-meta" id="metaEl"></p>
 
         <div class="project-media">
-          <div class="project-media-main">
-            <div class="project-trailer" id="trailerWrap" style="display:none;">
-              <div class="project-trailer-frame">
-                <iframe id="trailerFrame" src="" title="Трейлер" frameborder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  allowfullscreen loading="lazy"></iframe>
-              </div>
+          <div class="project-trailer" id="trailerWrap" style="display:none;">
+            <div class="project-trailer-frame">
+              <iframe id="trailerFrame" src="" title="Трейлер" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen loading="lazy"></iframe>
             </div>
+          </div>
+          <div class="project-poster" id="posterEl"></div>
+
+          <div class="project-desc">
             <p class="kicker">Об этой работе</p>
             <p class="body-text" id="descEl" style="max-width: none;"></p>
           </div>
-
-          <div class="project-poster-col">
-            <div class="project-poster" id="posterEl"></div>
-            <div class="project-meta-list">
-              <div><b>Тип:</b> <span id="metaTypeEl"></span></div>
-              <div id="metaPlatformRow"><b>Платформа:</b> <span id="metaPlatformEl"></span></div>
-              <div><b>Хронометраж:</b> <span id="metaMetaEl"></span></div>
-              <div><b>Язык:</b> перевод и озвучивание на русском</div>
-            </div>
+          <div class="project-meta-list">
+            <div><b>Тип:</b> <span id="metaTypeEl"></span></div>
+            <div id="metaPlatformRow"><b>Платформа:</b> <span id="metaPlatformEl"></span></div>
+            <div><b>Хронометраж:</b> <span id="metaMetaEl"></span></div>
+            <div><b>Язык:</b> перевод и озвучивание на русском</div>
           </div>
         </div>
 
@@ -214,17 +212,21 @@
     }
 
     const trailerBtn = document.getElementById('trailerLinkBtn');
+    const mediaEl = document.querySelector('.project-media');
+    let hasEmbeddedTrailer = false;
     if (item.trailer) {
       const idMatch = item.trailer.match(/(?:youtu\.be\/|[?&]v=|\/embed\/)([\w-]{11})/);
       const videoId = idMatch ? idMatch[1] : null;
       if (videoId) {
         document.getElementById('trailerFrame').src = `https://www.youtube.com/embed/${videoId}`;
         document.getElementById('trailerWrap').style.display = 'block';
+        hasEmbeddedTrailer = true;
       }
       trailerBtn.href = item.trailer;
     } else {
       trailerBtn.remove();
     }
+    mediaEl.classList.toggle('no-trailer', !hasEmbeddedTrailer);
 
     document.getElementById('projectContent').style.display = 'block';
 

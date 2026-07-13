@@ -861,11 +861,24 @@ img, svg { display: block; max-width: 100%; }
 }
 .project-hero-meta { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 32px; }
 
-.project-trailer { margin: 0 0 28px; }
+.project-media {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 20px 40px;
+  padding-top: 8px;
+}
+.project-media > .project-trailer { grid-column: 1; grid-row: 1; }
+.project-media > .project-poster { grid-column: 2; grid-row: 1; width: 100%; border: 1px solid var(--border); }
+.project-media > .project-desc { grid-column: 1; grid-row: 2; }
+.project-media > .project-meta-list { grid-column: 2; grid-row: 2; }
+/* no trailer for this title: let the description fill the whole left column */
+.project-media.no-trailer > .project-desc { grid-row: 1 / 3; }
+
 .project-trailer-frame {
   position: relative;
   width: 100%;
-  padding-top: 56.25%;
+  height: 100%;
+  min-height: 220px;
   border-radius: var(--radius);
   overflow: hidden;
   border: 1px solid var(--border);
@@ -878,18 +891,6 @@ img, svg { display: block; max-width: 100%; }
   height: 100%;
 }
 
-.project-media {
-  display: grid;
-  grid-template-columns: 1fr 300px;
-  gap: 40px;
-  align-items: start;
-  padding-top: 8px;
-}
-.project-poster-col { display: grid; gap: 20px; }
-.project-poster-col .project-poster {
-  width: 100%;
-  border: 1px solid var(--border);
-}
 .project-meta-list {
   background: var(--card-bg);
   border: 1px solid var(--border);
@@ -897,6 +898,7 @@ img, svg { display: block; max-width: 100%; }
   padding: 24px 26px;
   display: grid;
   gap: 14px;
+  align-content: start;
 }
 .project-meta-list div { font-size: 0.9rem; color: var(--text-muted); }
 .project-meta-list b { color: var(--text); font-weight: 700; }
@@ -1074,7 +1076,16 @@ img, svg { display: block; max-width: 100%; }
   .about-inner { grid-template-columns: 1fr; gap: 40px; }
   .service-lead { grid-template-columns: 1fr; gap: 32px; }
   .news-item { grid-template-columns: 1fr; }
-  .project-media { grid-template-columns: 1fr; gap: 28px; }
+  .project-media { grid-template-columns: 1fr; gap: 24px; }
+  .project-media > .project-trailer,
+  .project-media > .project-poster,
+  .project-media > .project-desc,
+  .project-media > .project-meta-list,
+  .project-media.no-trailer > .project-desc {
+    grid-column: 1;
+    grid-row: auto;
+  }
+  .project-trailer-frame { padding-top: 56.25%; height: 0; }
   .news-slider { grid-template-columns: 1fr; }
 }
 
