@@ -454,7 +454,6 @@ img, svg { display: block; max-width: 100%; }
    gradient + soft vignette + giant faint initial + title baked into the art,
    so the grid reads as designed instead of a wall of missing images. */
 .project-poster:not(:has(img)),
-.project-banner:not(:has(img)),
 .slider-feature,
 .slider-item-thumb {
   background:
@@ -843,24 +842,6 @@ img, svg { display: block; max-width: 100%; }
 }
 .project-back:hover { color: var(--gold); }
 
-.project-banner {
-  position: relative;
-  height: 320px;
-  border-radius: var(--radius);
-  border: 1px solid var(--border);
-  margin-bottom: 28px;
-  overflow: hidden;
-  background-position: center 20%;
-}
-.project-banner img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center 20%;
-}
-
 .project-hero-badges { display: flex; gap: 10px; margin-bottom: 16px; flex-wrap: wrap; }
 .project-title-row {
   display: flex;
@@ -880,7 +861,7 @@ img, svg { display: block; max-width: 100%; }
 }
 .project-hero-meta { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 32px; }
 
-.project-trailer { margin: 0 0 40px; }
+.project-trailer { margin: 0 0 28px; }
 .project-trailer-frame {
   position: relative;
   width: 100%;
@@ -897,12 +878,17 @@ img, svg { display: block; max-width: 100%; }
   height: 100%;
 }
 
-.project-about {
+.project-media {
   display: grid;
-  grid-template-columns: 1.4fr 1fr;
-  gap: 48px;
+  grid-template-columns: 1fr 300px;
+  gap: 40px;
   align-items: start;
   padding-top: 8px;
+}
+.project-poster-col { display: grid; gap: 20px; }
+.project-poster-col .project-poster {
+  width: 100%;
+  border: 1px solid var(--border);
 }
 .project-meta-list {
   background: var(--card-bg);
@@ -1084,16 +1070,11 @@ img, svg { display: block; max-width: 100%; }
 }
 
 /* ---------- Responsive ---------- */
-@media (max-width: 1080px) {
-  .project-banner { height: 260px; }
-}
-
 @media (max-width: 860px) {
   .about-inner { grid-template-columns: 1fr; gap: 40px; }
   .service-lead { grid-template-columns: 1fr; gap: 32px; }
   .news-item { grid-template-columns: 1fr; }
-  .project-about { grid-template-columns: 1fr; gap: 28px; }
-  .project-banner { height: 200px; }
+  .project-media { grid-template-columns: 1fr; gap: 28px; }
   .news-slider { grid-template-columns: 1fr; }
 }
 

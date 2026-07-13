@@ -87,8 +87,6 @@
       <div class="wrap">
         <a href="library.html" class="project-back">← Вернуться в библиотеку</a>
 
-        <div class="project-banner" id="posterEl"></div>
-
         <div class="project-hero-badges">
           <span class="project-badge" id="badgeEl"></span>
           <span class="project-badge" id="categoryBadgeEl"></span>
@@ -100,24 +98,27 @@
         </div>
         <p class="project-hero-meta" id="metaEl"></p>
 
-        <div class="project-trailer" id="trailerWrap" style="display:none;">
-          <div class="project-trailer-frame">
-            <iframe id="trailerFrame" src="" title="Трейлер" frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowfullscreen loading="lazy"></iframe>
-          </div>
-        </div>
-
-        <div class="project-about">
-          <div>
+        <div class="project-media">
+          <div class="project-media-main">
+            <div class="project-trailer" id="trailerWrap" style="display:none;">
+              <div class="project-trailer-frame">
+                <iframe id="trailerFrame" src="" title="Трейлер" frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowfullscreen loading="lazy"></iframe>
+              </div>
+            </div>
             <p class="kicker">Об этой работе</p>
             <p class="body-text" id="descEl" style="max-width: none;"></p>
           </div>
-          <div class="project-meta-list">
-            <div><b>Тип:</b> <span id="metaTypeEl"></span></div>
-            <div id="metaPlatformRow"><b>Платформа:</b> <span id="metaPlatformEl"></span></div>
-            <div><b>Хронометраж:</b> <span id="metaMetaEl"></span></div>
-            <div><b>Язык:</b> перевод и озвучивание на русском</div>
+
+          <div class="project-poster-col">
+            <div class="project-poster" id="posterEl"></div>
+            <div class="project-meta-list">
+              <div><b>Тип:</b> <span id="metaTypeEl"></span></div>
+              <div id="metaPlatformRow"><b>Платформа:</b> <span id="metaPlatformEl"></span></div>
+              <div><b>Хронометраж:</b> <span id="metaMetaEl"></span></div>
+              <div><b>Язык:</b> перевод и озвучивание на русском</div>
+            </div>
           </div>
         </div>
 
@@ -192,10 +193,12 @@
     document.getElementById('categoryBadgeEl').textContent = CATEGORY_LABEL[item.category];
     const posterEl = document.getElementById('posterEl');
     if (item.poster) {
-      posterEl.className = 'project-banner';
+      posterEl.className = 'project-poster';
       posterEl.innerHTML = `<img src="${item.poster}" alt="${item.title}">`;
     } else {
-      posterEl.className = `project-banner ${posterClass}`;
+      posterEl.className = `project-poster ${posterClass}`;
+      posterEl.dataset.title = item.title;
+      posterEl.dataset.initial = item.title.trim().charAt(0).toUpperCase();
     }
     document.getElementById('metaTypeEl').textContent = CATEGORY_LABEL[item.category];
     document.getElementById('metaMetaEl').textContent = item.meta;
