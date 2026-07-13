@@ -115,8 +115,7 @@ img, svg { display: block; max-width: 100%; }
   position: fixed;
   top: 0; left: 0; bottom: 0;
   width: var(--sidebar-w);
-  background: var(--bg-alt);
-  box-shadow: 6px 0 30px rgba(0,0,0,0.3);
+  background: var(--bg);
   display: flex;
   flex-direction: column;
   z-index: 100;
@@ -205,9 +204,8 @@ img, svg { display: block; max-width: 100%; }
   align-items: center;
   justify-content: space-between;
   padding: 16px 20px;
-  background: rgba(10,10,12,0.92);
+  background: rgba(10,10,12,0.85);
   backdrop-filter: blur(8px);
-  box-shadow: 0 4px 20px rgba(0,0,0,0.25);
 }
 .mobile-topbar .brand { display: flex; align-items: center; gap: 10px; }
 .mobile-topbar .brand-mark { width: 34px; height: 34px; }
@@ -328,7 +326,6 @@ img, svg { display: block; max-width: 100%; }
 .about-team-card p { color: var(--text-muted); font-size: 0.88rem; margin: 0; }
 
 /* ---------- Projects ---------- */
-.projects { background: var(--bg-alt); }
 
 .projects-grid {
   display: grid;
@@ -466,7 +463,6 @@ img, svg { display: block; max-width: 100%; }
 /* ---------- Footer ---------- */
 .site-footer {
   padding: 28px 0;
-  background: var(--bg-alt);
 }
 .footer-inner {
   display: flex;
