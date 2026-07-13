@@ -96,9 +96,17 @@
 
         <div class="project-title-row">
           <h1 id="titleEl"></h1>
-          <a href="https://www.youtube.com/@NewComers_Studio" target="_blank" rel="noopener" class="btn btn-primary">Трейлер на YouTube</a>
+          <a href="https://www.youtube.com/@NewComers_Studio" target="_blank" rel="noopener" class="btn btn-primary" id="trailerLinkBtn">Трейлер на YouTube</a>
         </div>
         <p class="project-hero-meta" id="metaEl"></p>
+
+        <div class="project-trailer" id="trailerWrap" style="display:none;">
+          <div class="project-trailer-frame">
+            <iframe id="trailerFrame" src="" title="Трейлер" frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen loading="lazy"></iframe>
+          </div>
+        </div>
 
         <div class="project-about">
           <div>
@@ -200,6 +208,19 @@
     } else {
       badgeEl.remove();
       platformRow.remove();
+    }
+
+    const trailerBtn = document.getElementById('trailerLinkBtn');
+    if (item.trailer) {
+      const idMatch = item.trailer.match(/(?:youtu\.be\/|[?&]v=|\/embed\/)([\w-]{11})/);
+      const videoId = idMatch ? idMatch[1] : null;
+      if (videoId) {
+        document.getElementById('trailerFrame').src = `https://www.youtube.com/embed/${videoId}`;
+        document.getElementById('trailerWrap').style.display = 'block';
+      }
+      trailerBtn.href = item.trailer;
+    } else {
+      trailerBtn.remove();
     }
 
     document.getElementById('projectContent').style.display = 'block';

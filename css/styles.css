@@ -880,6 +880,23 @@ img, svg { display: block; max-width: 100%; }
 }
 .project-hero-meta { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 32px; }
 
+.project-trailer { margin: 0 0 40px; }
+.project-trailer-frame {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%;
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: #000;
+}
+.project-trailer-frame iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
 .project-about {
   display: grid;
   grid-template-columns: 1.4fr 1fr;

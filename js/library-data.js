@@ -52,6 +52,11 @@ const LIBRARY = [
   { slug: 'invincible', title: 'Invincible', category: 'series', meta: 'Сезоны 1–3' },
   { slug: 'krapopolis', title: 'Krapopolis', category: 'series', meta: 'Сезон 1' },
   { slug: 'landman', title: 'Landman', category: 'series', meta: 'Сезоны 1–2' },
+  {
+    slug: 'lanterns', title: 'Lanterns', category: 'series', meta: 'Скоро · 2026', badge: 'HBO · Max',
+    trailer: 'https://youtu.be/8_cChUIXvBo?si=zMyHpkEVK_owTgGT',
+    description: 'Сериал вселенной DC о Зелёных Фонарях — Хэле Джордане и Джоне Стюарте, охраняющих Землю от космических угроз.',
+  },
   { slug: 'lawmen-bass-reeves', title: 'Lawmen: Bass Reeves', category: 'series', meta: 'Сезон 1' },
   { slug: 'like-a-dragon-yakuza', title: 'Like a Dragon: Yakuza', category: 'series', meta: 'Сезон 1' },
   {
