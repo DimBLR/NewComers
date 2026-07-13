@@ -101,16 +101,26 @@ if (sliderFeature && sliderList && sliderDots) {
   const dots = Array.from(sliderDots.querySelectorAll('.slider-dot'));
   const badgeEl = document.getElementById('sliderBadge');
   const titleEl = document.getElementById('sliderTitle');
+  const playBadge = document.getElementById('sliderPlayBadge');
   let current = 0;
   let timer;
 
   function showSlide(index) {
     current = index;
     const item = items[index];
+    const hasTrailer = item.classList.contains('has-trailer');
     sliderFeature.href = item.getAttribute('href');
+    if (hasTrailer) {
+      sliderFeature.setAttribute('target', '_blank');
+      sliderFeature.setAttribute('rel', 'noopener');
+    } else {
+      sliderFeature.removeAttribute('target');
+      sliderFeature.removeAttribute('rel');
+    }
     sliderFeature.className = `slider-feature ${item.dataset.poster}`;
     badgeEl.textContent = item.dataset.badge;
     titleEl.textContent = item.dataset.title;
+    if (playBadge) playBadge.hidden = !hasTrailer;
     items.forEach((el, i) => el.classList.toggle('active', i === index));
     dots.forEach((el, i) => el.classList.toggle('active', i === index));
   }
