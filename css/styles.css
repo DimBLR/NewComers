@@ -1077,6 +1077,7 @@ img, svg { display: block; max-width: 100%; }
   .project-media > .project-meta-list { order: 2; }
   .project-trailer-frame { padding-top: 56.25%; height: 0; }
   .news-slider { grid-template-columns: 1fr; }
+  .slider-list { display: none; }
 }
 
 @media (max-width: 900px) {
