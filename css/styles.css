@@ -1085,7 +1085,7 @@ img, svg { display: block; max-width: 100%; }
     grid-column: 1;
     grid-row: auto;
   }
-  .project-media > .project-poster { order: -1; max-width: 220px; margin: 0 auto; border-radius: var(--radius); }
+  .project-media > .project-poster { order: -1; border-radius: var(--radius); }
   .project-media > .project-trailer { order: 0; }
   .project-media > .project-desc { order: 1; }
   .project-media > .project-meta-list { order: 2; }
